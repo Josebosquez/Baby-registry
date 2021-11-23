@@ -4,10 +4,9 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 
 const Header = () => {
-
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar sx={{backgroundColor: "red"}} position="static">
                 <Toolbar>
                     Footer
                 </Toolbar>
@@ -17,6 +16,3 @@ const Header = () => {
 }
 
 export default Header
-
-
-

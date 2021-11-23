@@ -8,6 +8,9 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { Link } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 const Header = () => {
     const Search = styled('div')(({ theme }) => ({
@@ -54,8 +57,11 @@ const Header = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar sx={{ backgroundColor: 'red' }} position="static">
                 <Toolbar>
+                    <Link to="/">
+                        <img style={{ marginRight: '10px' }} src="https://img.icons8.com/pastel-glyph/50/000000/baby.png" />
+                    </Link>
                     <IconButton
                         size="large"
                         edge="start"
@@ -71,7 +77,6 @@ const Header = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
                     >
-                        MUI
                     </Typography>
                     <Search>
                         <SearchIconWrapper>
@@ -82,6 +87,13 @@ const Header = () => {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>
+                    <IconButton>
+                        <ShoppingCartIcon sx={{ color: "white" }} />
+                    </IconButton>
+                    <IconButton>
+                        <ManageAccountsIcon sx={{ color: "white" }}/>
+                    </IconButton>
+
                 </Toolbar>
             </AppBar>
         </Box>
