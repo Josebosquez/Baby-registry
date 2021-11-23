@@ -6,11 +6,10 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import MenuListComposition from "./MenuListComposition"
 
 const Header = () => {
     const Search = styled('div')(({ theme }) => ({
@@ -56,21 +55,12 @@ const Header = () => {
     }));
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1, display: 'flex', flexDirection:'column' }}>
             <AppBar sx={{ backgroundColor: 'red' }} position="static">
                 <Toolbar>
                     <Link to="/">
                         <img style={{ marginRight: '10px' }} src="https://img.icons8.com/pastel-glyph/50/000000/baby.png" />
                     </Link>
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
-                        sx={{ mr: 2 }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
                     <Typography
                         variant="h6"
                         noWrap
@@ -88,12 +78,11 @@ const Header = () => {
                         />
                     </Search>
                     <IconButton>
-                        <ShoppingCartIcon sx={{ color: "white" }} />
+                        <Link to='/cart'>
+                            <ShoppingCartIcon sx={{ color: "white" }} />
+                        </Link>
                     </IconButton>
-                    <IconButton>
-                        <ManageAccountsIcon sx={{ color: "white" }}/>
-                    </IconButton>
-
+                    <MenuListComposition/>
                 </Toolbar>
             </AppBar>
         </Box>

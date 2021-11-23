@@ -5,6 +5,7 @@ import { Provider as ReduxProvider } from 'react-redux'
 import { store } from './redux'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
+import Profile from './pages/Profile'
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <ReduxProvider store={store}>
       <Router>
         <Routes>
+          <Route path='/profile' element={<Profile />} />
           <Route path='/login' element={<Login />} />
           <Route path='/cart' element={<Cartpage />} />
           <Route path='/' element={<Homepage />} />
