@@ -6,6 +6,7 @@ import { store } from './redux'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
+import Product from './pages/Product'
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
     <ReduxProvider store={store}>
       <Router>
         <Routes>
+          <Route path='/product' element={<Product />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/login' element={<Login />} />
           <Route path='/cart' element={<Cartpage />} />
