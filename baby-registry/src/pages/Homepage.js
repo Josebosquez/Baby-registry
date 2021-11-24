@@ -1,5 +1,6 @@
 import { Box } from '@mui/system'
 import React, { useEffect, useState } from 'react'
+import BabyProducts from '../components/BabyProducts';
 import Layout from '../components/Layout'
 import { fetchProducts } from '../fakeDataBase';
 
@@ -15,12 +16,11 @@ const Homepage = () => {
             }
         )
     }, []);
-    console.log(productData)
 
     return (
         <Layout>
             <Box>
-                Hello homepage
+                <BabyProducts products={productData}/>
             </Box>
         </Layout>
     )
