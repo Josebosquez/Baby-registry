@@ -59,7 +59,7 @@ const Header = () => {
             <AppBar sx={{ backgroundColor: 'red' }} position="static">
                 <Toolbar>
                     <Link to="/">
-                        <img style={{ marginRight: '10px' }} src="https://img.icons8.com/pastel-glyph/50/000000/baby.png" />
+                        <img style={{ marginRight: '10px' }} src="https://img.icons8.com/pastel-glyph/50/000000/baby.png" alt="" />
                     </Link>
                     <Typography
                         variant="h6"

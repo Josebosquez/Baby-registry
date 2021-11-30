@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
             <CssBaseline/>
             <Box>
                 <Header />
-                <Box sx={{flexGrow: 1, overflow: "auto", height: "700px" }}>
+                <Box sx={{flexGrow: 1, overflow: "auto", height: "100vh" }}>
                     {children}
                 </Box>
                 <Footer/>
