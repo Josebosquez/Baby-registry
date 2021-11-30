@@ -1,17 +1,15 @@
 import React from 'react'
 import Homepage from './pages/Homepage'
 import Cartpage from './pages/Cartpage'
-import { Provider as ReduxProvider } from 'react-redux'
-import { store } from './redux'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Product from './pages/Product'
-
+import AppState from "./context/ContextState"
 
 function App() {
   return (
-    <ReduxProvider store={store}>
+    <AppState>
       <Router>
         <Routes>
           <Route path='/product' element={<Product />} />
@@ -21,8 +19,7 @@ function App() {
           <Route path='/' element={<Homepage />} />
         </Routes>
       </Router>
-    </ReduxProvider>
-
+    </AppState>
   )
 }
 
