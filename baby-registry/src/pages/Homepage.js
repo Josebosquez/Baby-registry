@@ -1,13 +1,12 @@
 import { Box } from '@mui/system'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import BabyProducts from '../components/BabyProducts';
 import Layout from '../components/Layout'
 import { fetchProducts } from '../fakeDataBase';
+import CreateContext from "../context/CreateContext"
 
 const Homepage = () => {
-
-    const [productData, setProductData] = useState([]);
-
+    const {productData, setProductData} = useContext(CreateContext)
 
     useEffect(() => {
         fetchProducts().then(
