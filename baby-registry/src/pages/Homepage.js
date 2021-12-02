@@ -6,15 +6,17 @@ import { fetchProducts } from '../fakeDataBase';
 import CreateContext from "../context/CreateContext"
 
 const Homepage = () => {
-    const {productData, setProductData} = useContext(CreateContext)
+    const { productData, setProductData, renderProductDetails, setRenderProductDetails} = useContext(CreateContext)
 
     useEffect(() => {
-        fetchProducts().then(
+        fetchProducts()
+        .then(
             productData => {
                 setProductData(productData);
+                setRenderProductDetails(true)
             }
         )
-    }, []);
+    }, [renderProductDetails]);
 
     return (
         <Layout>
