@@ -4,55 +4,66 @@ import CreateContext from "../context/CreateContext"
 import { Box } from '@mui/system';
 import { CardHeader, Container, Typography } from '@mui/material';
 import { useParams } from 'react-router';
-import {renderBabyProductItem} from "../fakeDataBase"
+import { renderBabyProductItem } from "../fakeDataBase"
 
 function Product() {
     let { id } = useParams()
 
-    const { babyProductData, setBabyProductData } = useContext(CreateContext)
+    const { babyProductData, setBabyProductData, renderProductDetails, setRenderProductDetails } = useContext(CreateContext)
 
-    // const babyProductData = babyProductDataFromContext;
-    // const babyProductData = babyProductDataFromContext.name ? babyProductDataFromContext : JSON.parse(window.localStorage.getItem('babyProductData'));
-
-    // window.localStorage.setItem('babyProductData', JSON.stringify(babyProductData))
-    // console.log("babyProductData", babyProductData)
-    // console.log("parseJson: ", JSON.parse(window.localStorage.getItem('babyProductData')));
-    // console.log("babyProductDataFromContext: ", babyProductDataFromContext);
+    window.localStorage.setItem('babyProductData', JSON.stringify(babyProductData))
+    const getproductFromLocalStorage = babyProductData.name ? babyProductData : JSON.parse(window.localStorage.getItem('babyProductData'));
 
     useEffect(() => {
-        // window.localStorage.setItem('babyProductData', JSON.stringify(babyProductData))
         renderBabyProductItem(id)
             .then(
                 item => {
                     setBabyProductData(item)
+                    setRenderProductDetails(false)
                 }
             )
     }, []
     )
-    console.log(babyProductData);
 
     return (
         <Layout>
             <Box>
-                <Container maxWidth="sm" sx={{marginTop: '20px', display: 'flex', flexDirection:'column', justifyContent:'center', alignContent: 'center', alignItems:'center'}}>
-                    <Box>
-                        <img src={babyProductData.image} alt={babyProductData.image} style={{maxWidth: "350px"}}/>
-                    </Box>
-                    <CardHeader sx={{width: '100%'}}
-                        action={
-                            <Box>
-                                <Typography color="black" >
-                                    $ {babyProductData.price}
-                                </Typography>
-                            </Box>
-                        }
-                        title={babyProductData.name}
-                        subheader={babyProductData.description}
+                {renderProductDetails ?
+                    ""
+                    :
+                    <Container maxWidth="sm" sx={{ marginTop: '20px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+                        <Box>
+                            <img src={babyProductData.image} alt={babyProductData.image} style={{ maxWidth: "350px" }} />
+                        </Box>
+                        <CardHeader sx={{ width: '100%' }}
+                            action={
+                                <Box>
+                                    <Typography color="black" >
+                                        {babyProductData.price}
+                                    </Typography>
+                                </Box>
+                            }
+                            title={babyProductData.name}
+                            subheader={babyProductData.description}
                         />
-                    <Box sx={{border: '1px solid black', width: "100%"}}>
-                        Reviews: {babyProductData.reviews}
-                    </Box>
-                </Container>
+                        <Box sx={{ width: "95%", }}>
+                            <Box direction="column" spacing={2}>
+                                <Box sx={{ textAlign: 'left', color: 'grey' }}>
+                                    {`Reviews: ${babyProductData.reviews}`}
+                                </Box>
+                                <Box sx={{ textAlign: 'left', color: 'grey' }}>
+                                    {`Reviews: ${babyProductData.age}`}
+                                </Box>
+                                <Box sx={{ textAlign: 'left', color: 'grey' }}>
+                                    {`Reviews: ${babyProductData.productDimensions}`}
+                                </Box>
+                                <Box sx={{ textAlign: 'left', color: 'grey' }}>
+                                    {`Reviews: ${babyProductData.department}`}
+                                </Box>
+                            </Box>
+                        </Box>
+                    </Container>
+                }
             </Box>
         </Layout>
     )

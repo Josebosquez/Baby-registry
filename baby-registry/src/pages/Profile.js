@@ -21,9 +21,6 @@ function Profile() {
         e.preventDefault();
         setValue(e.target.value);
         setUserName(value);
-        console.log("username: ",userName);
-        console.log("value: ", value);
-        console.log(value);
         setChange(!change)
     }
 
