@@ -12,7 +12,7 @@ function App() {
     <AppState>
       <Router>
         <Routes>
-          <Route path='/product' element={<Product />} />
+          <Route path='/product/:id' element={<Product />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/login' element={<Login />} />
           <Route path='/cart' element={<Cartpage />} />

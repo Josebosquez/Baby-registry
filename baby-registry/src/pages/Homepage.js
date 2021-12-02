@@ -1,5 +1,5 @@
 import { Box } from '@mui/system'
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import BabyProducts from '../components/BabyProducts';
 import Layout from '../components/Layout'
 import { fetchProducts } from '../fakeDataBase';

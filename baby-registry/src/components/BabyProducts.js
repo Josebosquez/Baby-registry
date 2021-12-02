@@ -1,10 +1,8 @@
 import Card from "./BabyProductCard"
 import { Box } from '@mui/system';
 import React from 'react'
-import { Link } from 'react-router-dom';
 
 function BabyProducts({products}) {
-    console.log(products);
 
     return (
         <Box>
