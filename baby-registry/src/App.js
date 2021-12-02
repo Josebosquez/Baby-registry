@@ -6,12 +6,14 @@ import Login from './pages/Login'
 import Profile from './pages/Profile'
 import Product from './pages/Product'
 import AppState from "./context/ContextState"
+import Sources from './components/Sources'
 
 function App() {
   return (
     <AppState>
       <Router>
         <Routes>
+          <Route path='/sources' element={<Sources />} />
           <Route path='/product/:id' element={<Product />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/login' element={<Login />} />
