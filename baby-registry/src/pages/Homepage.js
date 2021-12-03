@@ -16,7 +16,7 @@ const Homepage = () => {
                 setRenderProductDetails(true)
             }
         )
-    }, [renderProductDetails]);
+    }, [renderProductDetails, productData]);
 
     return (
         <Layout>
