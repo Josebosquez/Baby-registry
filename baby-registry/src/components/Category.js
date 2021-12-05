@@ -4,6 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import { fetchCategoryItems } from '../fakeDataBase';
 import CreateContext from "../context/CreateContext"
+import { Link } from 'react-router-dom';
 
 const Category = () => {
     const { Value, setValue, departmentProducts, setDepartmentProducts, babyProductData } = useContext(CreateContext)
@@ -33,7 +34,6 @@ const Category = () => {
         }
     }
 
-    console.log(departmentProducts);
     return (
         <Box sx={{
             flexGrow: 1
@@ -68,10 +68,22 @@ const Category = () => {
                     Car seats
                 </IconButton>
             </Toolbar>
-            <Toolbar>
-                
-            </Toolbar>
-
+            { departmentProducts ? 
+                <Toolbar sx={{ width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'center', alignContent: 'center', color: "black" }}>
+                {departmentProducts.map(item => {
+                    return <Box key={item.id} value = {item.id} >
+                        <Link to={`/product/${item.id}`}>
+                            <img src={item.image} alt="" 
+                            style={{ width: "75px" }} 
+                            value={item}
+                            />
+                        </Link>
+                        <br/>
+                    </Box>
+                })}
+            </Toolbar> :
+            ""
+            }
 
         </Box>
     )
