@@ -9,7 +9,7 @@ import { renderBabyProductItem } from "../fakeDataBase"
 function Product() {
     let { id } = useParams()
 
-    const { departmentProducts, babyProductData, setBabyProductData, renderProductDetails, setRenderProductDetails } = useContext(CreateContext)
+    const { setToggleCategory, departmentProducts, babyProductData, setBabyProductData, renderProductDetails, setRenderProductDetails } = useContext(CreateContext)
 
     window.localStorage.setItem('babyProductData', JSON.stringify(babyProductData))
     const getproductFromLocalStorage = babyProductData.name ? babyProductData : JSON.parse(window.localStorage.getItem('babyProductData'));
@@ -20,6 +20,7 @@ function Product() {
                 item => {
                     setBabyProductData(item)
                     setRenderProductDetails(false)
+                    setToggleCategory(false)
                 }
             )
     }, [id]

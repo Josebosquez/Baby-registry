@@ -22,7 +22,7 @@ function BabyProductCard({product}) {
                         action={
                             <Box>
                                 <Typography color="black" >
-                                    $ {product.price}
+                                    {product.price}
                                 </Typography>
                             </Box>
                         }
