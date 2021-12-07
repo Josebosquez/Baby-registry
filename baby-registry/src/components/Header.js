@@ -55,7 +55,7 @@ const Header = () => {
     }));
 
     return (
-        <Box sx={{ flexGrow: 1, display: 'flex', flexDirection:'column' }}>
+        <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
             <AppBar sx={{ backgroundColor: 'red' }} position="static">
                 <Toolbar>
                     <Link to="/">
@@ -77,12 +77,18 @@ const Header = () => {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>
-                    <IconButton>
+
+                    <IconButton sx={{ fontSize: '10px', display: 'flex', flexDirection: 'column' }}>
                         <Link to='/cart'>
                             <ShoppingCartIcon sx={{ color: "white" }} />
                         </Link>
+                        cart amount
                     </IconButton>
-                    <MenuListComposition/>
+
+                    <Box sx={{ fontSize: '10px', display: 'flex', flexDirection: 'column', justifyContent:'center', alignContent:'center', alignItems:'center' }}>
+                        <MenuListComposition />
+                        Menu
+                    </Box>
                 </Toolbar>
             </AppBar>
         </Box>

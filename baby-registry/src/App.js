@@ -2,7 +2,7 @@ import React from 'react'
 import Homepage from './pages/Homepage'
 import Cartpage from './pages/Cartpage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Login from './pages/Login'
+import CreateUser from './pages/createUser'
 import Profile from './pages/Profile'
 import Product from './pages/Product'
 import AppState from "./context/ContextState"
@@ -16,7 +16,7 @@ function App() {
           <Route path='/sources' element={<Sources />} />
           <Route path='/product/:id' element={<Product />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/createUser' element={<CreateUser />} />
           <Route path='/cart' element={<Cartpage />} />
           <Route path='/' element={<Homepage />} />
         </Routes>

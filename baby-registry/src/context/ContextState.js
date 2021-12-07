@@ -9,8 +9,14 @@ const AppState = (props)=> {
     const [Value, setValue] = useState('')
     const [toggleCategory, setToggleCategory] = useState(false)
 
+    // quantity of cart 
+    const [valueOfItemAdded, setValueOfItemAdded] = useState('')
+
+    //user 
+    const [user, setUser] = useState(null)
+
     return (
-        <ContextState.Provider value={{ Value, setValue, departmentProducts, setDepartmentProducts, productData, setProductData, babyProductData, setBabyProductData, setRenderProductDetails, renderProductDetails, toggleCategory, setToggleCategory}}>
+        <ContextState.Provider value={{ user, setUser, valueOfItemAdded, setValueOfItemAdded, Value, setValue, departmentProducts, setDepartmentProducts, productData, setProductData, babyProductData, setBabyProductData, setRenderProductDetails, renderProductDetails, toggleCategory, setToggleCategory}}>
             {props.children}
         </ContextState.Provider>
     )

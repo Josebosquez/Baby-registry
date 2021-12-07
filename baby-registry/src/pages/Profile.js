@@ -1,4 +1,4 @@
-import {Card, TextField } from '@mui/material'
+import {Button, Card, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import Layout from '../components/Layout'
@@ -40,12 +40,12 @@ function Profile() {
                     }}
                 >
                     <TextField label={`${userName}`} onChange={(event) => setValue(event.target.value)}/>
-                    <button onClick={(e)=>onSubmit(e)} style={{width: "45%"}}>
+                    <Button onClick={(e)=>onSubmit(e)} style={{width: "45%"}}>
                         submit
-                    </button>
-                    <button onClick={(e) => cancelSubmit(e)} style={{ width: "45%" }}>
+                    </Button>
+                    <Button onClick={(e) => cancelSubmit(e)} style={{ width: "45%" }}>
                         cancel
-                    </button>
+                    </Button>
                 </Box> 
                     : 
                     <Box onClick={() => changeState()}>{userName}

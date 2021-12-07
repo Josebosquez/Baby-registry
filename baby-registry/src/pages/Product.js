@@ -2,14 +2,15 @@ import { useContext, useEffect } from 'react'
 import Layout from '../components/Layout'
 import CreateContext from "../context/CreateContext"
 import { Box } from '@mui/system';
-import { CardHeader, Container, Typography } from '@mui/material';
+import { Button, CardHeader, Container, Typography } from '@mui/material';
 import { useParams } from 'react-router';
-import { renderBabyProductItem } from "../fakeDataBase"
+import { renderBabyProductItem, updateQuantityOfCartItem } from '../fakeDataBase';
+
 
 function Product() {
     let { id } = useParams()
 
-    const { setToggleCategory, departmentProducts, babyProductData, setBabyProductData, renderProductDetails, setRenderProductDetails } = useContext(CreateContext)
+    const { valueOfItemAdded, setValueOfItemAdded, setToggleCategory, departmentProducts, babyProductData, setBabyProductData, renderProductDetails, setRenderProductDetails } = useContext(CreateContext)
 
     window.localStorage.setItem('babyProductData', JSON.stringify(babyProductData))
     const getproductFromLocalStorage = babyProductData.name ? babyProductData : JSON.parse(window.localStorage.getItem('babyProductData'));
@@ -25,6 +26,11 @@ function Product() {
             )
     }, [id]
     )
+
+    const AddOneToCart = (value) => {
+        console.log(value)
+        updateQuantityOfCartItem()
+    }
 
     return (
         <Layout>
@@ -47,6 +53,25 @@ function Product() {
                             title={babyProductData.name}
                             subheader={babyProductData.description}
                         />
+
+
+                        <Box sx={{ display: 'flex', width: '100%', justifyContent: 'space-evenly' }}>
+                            <Button sx={{fontSize: '25px' }} 
+                            value={babyProductData.id} 
+                            onClick={(e) => AddOneToCart(e.target.value)} 
+                            >
+                                +
+                            </Button> 
+                            <p style={{ fontSize: '25px' }}>
+                                Quantity: {babyProductData.quantity}
+                            </p>
+                            <Button sx={{fontSize: '25px' }}
+                                value="subtract" >
+                                -
+                            </Button>
+                        </Box>
+
+                        <br />
                         <Box sx={{ width: "95%", }}>
                             <Box direction="column" spacing={2}>
                                 <Box sx={{ textAlign: 'left', color: 'grey' }}>

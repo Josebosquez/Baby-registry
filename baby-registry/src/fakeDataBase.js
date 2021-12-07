@@ -9,6 +9,7 @@ const productList = [
         productDimensions: "4.33 x 3.15 x 1.57 inches; 2.82 Ounces",
         department: "Clothing",
         reviews: 25,
+        quantity: 0,
     }, {
         id: '2',
         name: 'diapers',
@@ -19,6 +20,7 @@ const productList = [
         age: '0 - 3 months',
         productDimensions: "13 x 9.69 x 11.63 inches; 4.1 Pounds",
         department: "Diapering",
+        quantity: 0,
     }, {
         id: '3',
         name: 'bath tub',
@@ -29,6 +31,7 @@ const productList = [
         productDimensions: "17.75 x 8.66 x 30.5 inches; 2.29 Pounds",
         department: "Health and Safety",
         reviews: 12986,
+        quantity: 0,
     }, {
         id: '4',
         name: 'onesies',
@@ -39,6 +42,7 @@ const productList = [
         productDimensions: "17.75 x 8.66 x 30.5 inches; 2.29 Pounds",
         department: "Clothing",
         reviews: 12986,
+        quantity: 0,
     }, {
         id: '5',
         name: 'car seat',
@@ -49,6 +53,7 @@ const productList = [
         productDimensions: "19.2 x 22.1 x 25.2 inches; 19.25 Pounds",
         department: "Car seats",
         reviews: 12986,
+        quantity: 0,
     }
 ]
 
@@ -102,4 +107,23 @@ export const fetchCategoryItems = (value) => new Promise((resolve, reject) => {
             reject(error);
         }
     }, 1000);
+});
+
+// update quantity of item in cart
+// create a func that grabs the department when i click on categories.
+export const updateQuantityOfCartItem = (value) => new Promise((resolve, reject) => {
+    console.log('fetching quantityData')
+    const filterArray = productList.filter(item => item.department === value)
+    console.log(filterArray)
+
+//     setTimeout(() => {
+//         try {
+//             if (filterArray) {
+//                 return resolve(filterArray)
+//             }
+//             throw new Error('Something went wrong.')
+//         } catch (error) {
+//             reject(error);
+//         }
+//     }, 1000);
 });

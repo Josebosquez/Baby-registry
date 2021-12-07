@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
 import Button from '@mui/material/Button';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
@@ -9,10 +9,12 @@ import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+import CreateContext from "../context/CreateContext"
 
 export default function MenuListComposition() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
+    const { user} = useContext(CreateContext)
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -63,12 +65,13 @@ export default function MenuListComposition() {
                         <Grow {...TransitionProps} style={{ transformOrigin: placement === 'bottom-start' ? 'left top' : 'left bottom', }} >
                             <Paper>
                                 <ClickAwayListener onClickAway={handleClose}>
-                                    <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button" onKeyDown={handleListKeyDown}>
+                                    <MenuList autoFocusItem={open} id="composition-menu" aria-labelledby="composition-button" onKeyDown={handleListKeyDown}
+                                        sx={{ marginTop: '75px' }}>
                                         <Link to="/profile">
                                             <MenuItem onClick={handleClose}>Profile</MenuItem>
                                         </Link>
                                         <MenuItem onClick={handleClose}>My account</MenuItem>
-                                        <MenuItem onClick={handleClose}>Logout</MenuItem>
+                                        {user ? <MenuItem onClick={handleClose}>Logout</MenuItem> : <MenuItem onClick={handleClose}>Login</MenuItem>}
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>

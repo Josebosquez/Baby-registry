@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-function BabyProductCard({product}) {
+function BabyProductCard({ product }) {
 
     return (
         <div>
@@ -27,9 +27,8 @@ function BabyProductCard({product}) {
                             </Box>
                         }
                         title={product.name}
-                    />
-                </Link>
-
+                        />
+                        </Link>
             </Card>
         </div>
     )
