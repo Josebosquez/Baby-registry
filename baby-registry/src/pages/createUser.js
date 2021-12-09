@@ -7,6 +7,7 @@ import axios from 'axios';
 import DatePicker from "../components/DatePicker"
 import useChangeInputConfig from "../hooks/useInput"
 import CreateContext from "../context/CreateContext"
+import { Link } from 'react-router-dom';
 
 function CreateUser(props) {
 
@@ -42,8 +43,8 @@ function CreateUser(props) {
 
     return (
         <Layout>
-            <Container maxWidth="345px" sx={{ border: '1px solid black', display: "flex", flexDirection: 'column', justifyContent: 'center', alignItems: "center", alignContent: 'center' }}>
-                <Box sx={{ marginTop: '50px', fontSize: '25px' }}>
+            <Container maxWidth="345px" sx={{ border: '1px solid black', display: "flex", flexDirection: 'column', justifyContent: 'center', alignItems: "center", alignContent: 'center', height: '100vh' }}>
+                <Box sx={{ marginTop: '-20', fontSize: '25px' }}>
                     CreateUser
                 </Box>
                 <Box sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -95,15 +96,19 @@ function CreateUser(props) {
                         label="Due Date"
                         value={dueDate}
                         onChange={(e) => setDueDate(e.target.value)}
-                    />
-
-                    {/* <DatePicker/> */}
+                    /><p>Format YYYY/MM/DD</p>
+                    <DatePicker />
                 </Box>
 
                 {/* <Button onClick={onSubmit}> */}
                 <Button onClick={(e) => CreateUser(e)}>
                     Submit
                 </Button>
+                <Link to="/login">
+                    <div style={{ textDecoration: 'none', color: 'black', }}>
+                        Login
+                    </div>
+                </Link>
             </Container>
         </Layout>
     );

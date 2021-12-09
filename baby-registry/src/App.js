@@ -7,6 +7,7 @@ import Profile from './pages/Profile'
 import Product from './pages/Product'
 import AppState from "./context/ContextState"
 import Sources from './components/Sources'
+import Login from './pages/Login'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path='/product/:id' element={<Product />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/createUser' element={<CreateUser />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/cart' element={<Cartpage />} />
           <Route path='/' element={<Homepage />} />
         </Routes>

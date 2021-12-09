@@ -1,32 +1,36 @@
 import React, { useState } from 'react'
-import { KeyboardDatePicker } from "@material-ui/pickers"
+import { DatePicker } from "@material-ui/pickers"
+import DateFnsUtils from "@date-io/date-fns"
+import { MuiPickersUtilsProvider } from "@material-ui/pickers"
+import EventIcon from '@mui/icons-material/Event';
 
-function DatePicker() {
+function DatePicker1() {
     const [myDate, setMyDate] = useState(Date || null);
 
     let date = myDate.toString().slice(0, 15)
     console.log(date)
 
-    if (date > Date.now()){
-        console.log('error')
-        return "error";
-    }
+    // let currentTime = Date.now()
 
+    // console.log(currentTime)
+    console.log(myDate)
+    // let reversedDate = date.split('').reverse().join('')
+    // console.log("re", reversedDate);
 
     return (
-        <>
-            <KeyboardDatePicker value={myDate} onChange={setMyDate}
-                InputAdornmentProps={{ position: "end" }}
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <DatePicker value={myDate} onChange={setMyDate}
                 label='Select Date'
                 inputVariant="outlined"
-                format='yyyy.MM.dd'
-                style={{width: '40%', border: '1px solid black'}}
+                format='yyyy/MM/dd'
+                style={{ width: '100%', border: '1px solid black' }}
+            // <img src={<EventIcon/>}/>
             />
             <div>
                 {date}
             </div>
-        </>
+        </MuiPickersUtilsProvider>
     )
 }
 
-export default DatePicker
+export default DatePicker1

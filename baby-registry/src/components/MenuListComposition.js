@@ -71,7 +71,7 @@ export default function MenuListComposition() {
                                             <MenuItem onClick={handleClose}>Profile</MenuItem>
                                         </Link>
                                         <MenuItem onClick={handleClose}>My account</MenuItem>
-                                        {user ? <MenuItem onClick={handleClose}>Logout</MenuItem> : <Link to="/createUser"><MenuItem onClick={handleClose} >Login</MenuItem></Link>}
+                                        {user ? <MenuItem onClick={handleClose}>Logout</MenuItem> : <Link to="/login"><MenuItem onClick={handleClose} >Login</MenuItem></Link>}
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>

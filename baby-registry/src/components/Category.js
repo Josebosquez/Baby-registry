@@ -11,7 +11,7 @@ const Category = () => {
 
     useEffect(() => {
         fetchCategoryItems(Value)
-            .then(item => { 
+            .then(item => {
                 setDepartmentProducts(item)
             })
     }, [Value])
@@ -72,23 +72,23 @@ const Category = () => {
                     Car seats
                 </IconButton>
             </Toolbar>
-            {!toggleCategory 
-            ? "" 
-            : !departmentProducts 
-                ? "hello you who" 
-                : <Toolbar sx={{ width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'center', alignContent: 'center', color: "black" }}>
-                {departmentProducts.map(item => {
-                    return <Box key={item.id} value={item.id} >
-                        <Link to={`/product/${item.id}`}>
-                            <img src={item.image} alt=""
-                                style={{ width: "75px" }}
-                                value={item}
-                            />
-                        </Link>
-                        <br />
-                    </Box>
-                })}
-            </Toolbar> }
+            {!toggleCategory
+                ? ""
+                : !departmentProducts
+                    ? "hello you who"
+                    : <Toolbar sx={{ width: '100%', display: 'flex', justifyContent: 'space-around', alignItems: 'center', alignContent: 'center', color: "black" }}>
+                        {departmentProducts.map(item => {
+                            return <Box key={item.id} value={item.id} >
+                                <Link to={`/product/${item.id}`}>
+                                    <img src={item.image} alt=""
+                                        style={{ width: "75px" }}
+                                        value={item}
+                                    />
+                                </Link>
+                                <br />
+                            </Box>
+                        })}
+                    </Toolbar>}
         </Box>
     )
 }
