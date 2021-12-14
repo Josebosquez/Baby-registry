@@ -1,30 +1,49 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import Button from '@mui/material/Button';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
+import {MenuList, MenuItem} from '@mui/material';
 import Stack from '@mui/material/Stack';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CreateContext from "../context/CreateContext"
+import axios from "axios"
+import Cookies from "js-cookie"
+import CheckAuthCookie from '../hooks/checkAuthCookie';
 
 export default function MenuListComposition() {
+    const navigate = useNavigate()
+    const { logUserIn, checkIfCookieExists } = CheckAuthCookie();
+
+    const isAuth = checkIfCookieExists();
+
+    const {user, setUser} = useContext(CreateContext)
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
-    const { user} = useContext(CreateContext)
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
 
-    const handleClose = (event) => {
+    const handleClose = async (event) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
 
+        setOpen(false);
+    };
+
+    const handleLogOut = async (event) => {
+        if (anchorRef.current && anchorRef.current.contains(event.target)) {
+            return;
+        }
+        let response = await axios.get('http://localhost:3001/users/logOut')
+        
+        setUser(null)
+        Cookies.remove('jwt_cookie');
+        navigate('/login')
         setOpen(false);
     };
 
@@ -58,7 +77,7 @@ export default function MenuListComposition() {
                     aria-haspopup="true"
                     onClick={handleToggle}
                 >
-                    <MenuIcon sx={{color: "white"}}/>
+                    <MenuIcon sx={{ color: "white" }} />
                 </Button>
                 <Popper open={open} anchorEl={anchorRef.current} role={undefined} placement="bottom-start" transition disablePortal >
                     {({ TransitionProps, placement }) => (
@@ -71,7 +90,9 @@ export default function MenuListComposition() {
                                             <MenuItem onClick={handleClose}>Profile</MenuItem>
                                         </Link>
                                         <MenuItem onClick={handleClose}>My account</MenuItem>
-                                        {user ? <MenuItem onClick={handleClose}>Logout</MenuItem> : <Link to="/login"><MenuItem onClick={handleClose} >Login</MenuItem></Link>}
+                                        
+                                        
+                                        {isAuth ? <Link to="login"><MenuItem value='Logout' onClick={handleLogOut}>Logout</MenuItem> </Link>: <Link to="/login"><MenuItem value='Logout' onClick={handleClose} >Login</MenuItem></Link>}
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>

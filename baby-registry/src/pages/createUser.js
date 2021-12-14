@@ -4,13 +4,15 @@ import Container from '@mui/material/Container';
 import { Button, TextField } from '@mui/material';
 import Layout from '../components/Layout';
 import axios from 'axios';
-import DatePicker from "../components/DatePicker"
-import useChangeInputConfig from "../hooks/useInput"
 import CreateContext from "../context/CreateContext"
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
-function CreateUser(props) {
-
+function CreateUser() {
+    let navigate = useNavigate();
     const { email, setEmail, dueDate, setDueDate, gender, setGender, spouseLastName, setSpouseLastName, spouseFirstName, setSpouseFirstName, lastName, setLastName, firstName, setFirstName, password, setPassword } = useContext(CreateContext)
 
     const CreateUser = async (e) => {
@@ -26,7 +28,9 @@ function CreateUser(props) {
                 sLName: spouseLastName,
                 babyGender: gender,
             })
+            
             let data = await response.data
+            navigate('/login')
 
             setEmail('')
             setDueDate('')
@@ -36,10 +40,15 @@ function CreateUser(props) {
             setLastName('')
             setFirstName('')
             setPassword('')
+            console.log(data)
         } catch (e) {
             console.log(e)
         }
     }
+
+    const handleChange = (event) => {
+        setGender(event.target.value);
+    };
 
     return (
         <Layout>
@@ -85,28 +94,38 @@ function CreateUser(props) {
                         value={spouseLastName}
                         onChange={(e) => setSpouseLastName(e.target.value)}
                     />
-
-                    <TextField
-                        label="Gender"
-                        value={gender}
-                        onChange={(e) => setGender(e.target.value)}
-                    />
-
+                    
+                        <FormControl sx={{ m: 1, minWidth: "50px" }}>
+                            <InputLabel id="demo-simple-select-autowidth-label">Gender</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-autowidth-label"
+                                id="demo-simple-select-autowidth"
+                                value={gender}
+                                onChange={handleChange}
+                                autoWidth
+                                label="Gender"
+                            >
+                                <MenuItem value="">
+                                    <em>None</em>
+                                </MenuItem>
+                                <MenuItem value={"Boy"}>Boy</MenuItem>
+                                <MenuItem value={"Girl"}>Girl</MenuItem>
+                            </Select>
+                        </FormControl>
+                    
                     <TextField
                         label="Due Date"
                         value={dueDate}
                         onChange={(e) => setDueDate(e.target.value)}
                     /><p>Format YYYY/MM/DD</p>
-                    <DatePicker />
                 </Box>
 
-                {/* <Button onClick={onSubmit}> */}
                 <Button onClick={(e) => CreateUser(e)}>
                     Submit
                 </Button>
                 <Link to="/login">
                     <div style={{ textDecoration: 'none', color: 'black', }}>
-                        Login
+                        Already have an account? Login!
                     </div>
                 </Link>
             </Container>
@@ -115,36 +134,3 @@ function CreateUser(props) {
 }
 
 export default CreateUser
-
-
-
-
-
-
-{/*                         
-                        <TextField label="password" sx={{ margin: '25px', width: '40%' }} />
-                    </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                        <TextField label="First Name" sx={{ margin: '25px', width: '40%' }} />
-                        <TextField label="Last Name" sx={{ margin: '25px', width: '40%' }} />
-                    </Box>
-                    <Box sx={{ display: 'flex', flexDirection:'column', justifyContent: 'center', alignContent:'center', alignItems:'center' }}>
-                        <p>Spouse Info</p>
-                        <div style={{display:'flex'}}>
-                        <TextField label="Spouse First Name" sx={{ margin: '25px', width: '40%' }} />
-                        <TextField label="Spouse Last Name" sx={{ margin: '25px', width: '40%' }} />
-                        </div>
-                    </Box>
-                    <Box sx={{ display: 'flex', flexDirection:'column', justifyContent: 'center', alignContent:'center', alignItems:'center' }}>
-                        <p>Baby Info</p>
-                        <div style={{display:'flex'}}>
-                            <TextField label="Due Date" sx={{ margin: '25px', width: '40%' }} />
-                            <TextField label="Gender" sx={{ margin: '25px', width: '40%' }} />
-                        </div>
-                    </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                        <TextField label="Due Date" sx={{ margin: '25px', width: '40%' }} />
-                        <TextField label="Gender" sx={{ margin: '25px', width: '40%' }} />
-                    </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                        {/* <DatePicker/> */}

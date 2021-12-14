@@ -1,13 +1,22 @@
 import { Button, Container, TextField } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Layout from '../components/Layout'
 import CreateContext from "../context/CreateContext"
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from "react-router-dom"
+import Cookies from "js-cookie"
+import CheckAuthCookie from '../hooks/checkAuthCookie'
 
-function Login(props) {
+function Login() {
+    let navigate = useNavigate();
+    const { logUserIn } = CheckAuthCookie();
+
     const { email, setEmail, password, setPassword, user, setUser } = useContext(CreateContext)
+
+    useEffect(() => {
+        console.log(user)
+    }, [user])
 
     const Submit = async (e) => {
         e.preventDefault()
@@ -16,10 +25,17 @@ function Login(props) {
                 email: email,
                 password: password
             })
-            console.log(email)
-            console.log("password:", password)
             let data = await response.data
 
+            Cookies.set("jwt_cookie", data.payload.email)
+            console.log(data.payload)
+
+            setUser(data)
+
+            setEmail('')
+            setPassword('')
+
+            logUserIn()
         } catch (e) {
             console.log(e)
         }
@@ -51,7 +67,7 @@ function Login(props) {
                     <div style={{ textDecoration: 'none', color: 'black', }}>
                         Create an account
                     </div>
-                </Link>
+                </Link> 
             </Container>
         </Layout>
     )
