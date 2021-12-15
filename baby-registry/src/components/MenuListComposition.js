@@ -38,6 +38,8 @@ export default function MenuListComposition() {
         try {
             let response = await axios.get('http://localhost:3001/users/logOut')
             if (response){
+                window.localStorage.removeItem('isAuth')
+                window.localStorage.removeItem('user')
                 setUser(null)
                 setIsAuth(null)
                 navigate('/login')

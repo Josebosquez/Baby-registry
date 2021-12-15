@@ -13,15 +13,16 @@ function PrivateRoute({ children }) {
 
     let getAuthFromLocalStorage;
     let getUserFromLocalStorage;
+    console.log(getUserFromLocalStorage)
 
     if (!isAuth) {
         getAuthFromLocalStorage = isAuth ? isAuth : JSON.parse(window.localStorage.getItem('isAuth'));
-
+        
         getUserFromLocalStorage = user ? user : JSON.parse(window.localStorage.getItem('user'));
-    }
 
-    if (!getAuthFromLocalStorage && !getUserFromLocalStorage) {
+        console.log(getAuthFromLocalStorage)
         navigate('/login')
+        console.log('routing')
     }
 
     return children;

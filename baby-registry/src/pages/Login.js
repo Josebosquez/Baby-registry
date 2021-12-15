@@ -12,6 +12,7 @@ function Login() {
 
     useEffect(() => {
         console.log(user)
+        console.log(isAuth)
     }, [isAuth])
 
     const Submit = async (e) => {
