@@ -1,6 +1,6 @@
 import { createContext } from "react"
 
-const ContextState = createContext({});
+const ContextState = createContext();
 
 export default ContextState
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import Homepage from './pages/Homepage'
 import Cartpage from './pages/Cartpage'
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import CreateUser from './pages/createUser'
 import Profile from './pages/Profile'
 import Product from './pages/Product'

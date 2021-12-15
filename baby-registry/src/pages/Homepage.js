@@ -4,27 +4,25 @@ import BabyProducts from '../components/BabyProducts';
 import Layout from '../components/Layout'
 import { fetchProducts } from '../fakeDataBase';
 import CreateContext from "../context/CreateContext"
-import CheckAuthCookie from '../hooks/checkAuthCookie';
 
 const Homepage = () => {
-    const { productData, setProductData, renderProductDetails, setRenderProductDetails} = useContext(CreateContext)
-    const { logUserIn } = CheckAuthCookie();
+    const { productData, setProductData, renderProductDetails, setRenderProductDetails } = useContext(CreateContext)
 
     useEffect(() => {
         fetchProducts()
-        .then(
-            productData => {
-                setProductData(productData);
-                setRenderProductDetails(true)
-            }
-        )
-        logUserIn();
-    }, [renderProductDetails, productData]);
+            .then(
+                productData => {
+                    setProductData(productData);
+                    setRenderProductDetails(true)
+                }
+            )
+        // logUserIn();
+    }, [setRenderProductDetails, productData, setProductData, renderProductDetails]);
 
     return (
         <Layout>
             <Box>
-                <BabyProducts products={productData}/>
+                <BabyProducts products={productData} />
             </Box>
         </Layout>
     )

@@ -1,12 +1,7 @@
-import {useContext} from "react"
 import Cookie from "js-cookie"
 import jwtDecode from 'jwt-decode'
-import { useNavigate, Link } from "react-router-dom"
-import CreateContext from "../context/CreateContext"
 
 function CheckAuthCookie() {
-    const { user, setUser } = useContext(CreateContext)
-
     function checkIfCookieExists() {
         const cookie = Cookie.get('jwt_cookie')
 
@@ -16,16 +11,15 @@ function CheckAuthCookie() {
             return null;
         }
     }
-    
+
     function logUserIn() {
         let checkCookieExist = checkIfCookieExists();
 
         if (checkCookieExist) {
             const cookie = Cookie.get('jwt_cookie')
-
-            // const jwtDecodeToken = jwtDecode(cookie)
-            // console.log(jwtDecodeToken)
-        } 
+            console.log('cookie: ', cookie)
+            const jwtDecodeToken = jwtDecode(cookie)
+        }
     }
 
     return { checkIfCookieExists, logUserIn }

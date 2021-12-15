@@ -5,18 +5,14 @@ import Layout from '../components/Layout'
 import CreateContext from "../context/CreateContext"
 import axios from 'axios'
 import { useNavigate, Link } from "react-router-dom"
-import Cookies from "js-cookie"
-import CheckAuthCookie from '../hooks/checkAuthCookie'
 
 function Login() {
     let navigate = useNavigate();
-    const { logUserIn } = CheckAuthCookie();
-
-    const { email, setEmail, password, setPassword, user, setUser } = useContext(CreateContext)
+    const { isAuth, setIsAuth, email, setEmail, password, setPassword, user, setUser } = useContext(CreateContext)
 
     useEffect(() => {
         console.log(user)
-    }, [user])
+    }, [isAuth])
 
     const Submit = async (e) => {
         e.preventDefault()
@@ -25,17 +21,15 @@ function Login() {
                 email: email,
                 password: password
             })
+
             let data = await response.data
 
-            Cookies.set("jwt_cookie", data.payload.email)
-            console.log(data.payload)
-
-            setUser(data)
-
+            setUser(data.payload)
+            setIsAuth(data.payload.email)
             setEmail('')
             setPassword('')
 
-            logUserIn()
+            navigate('/')
         } catch (e) {
             console.log(e)
         }
@@ -67,7 +61,7 @@ function Login() {
                     <div style={{ textDecoration: 'none', color: 'black', }}>
                         Create an account
                     </div>
-                </Link> 
+                </Link>
             </Container>
         </Layout>
     )

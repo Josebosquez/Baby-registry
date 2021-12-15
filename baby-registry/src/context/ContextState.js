@@ -14,6 +14,7 @@ const AppState = (props)=> {
 
     //user 
     const [user, setUser] = useState(null)
+    const [isAuth, setIsAuth] = useState(null)
 
 
     // create user
@@ -26,8 +27,10 @@ const AppState = (props)=> {
     const [gender, setGender] = useState('')
     const [dueDate, setDueDate] = useState('')
 
+    
+
     return (
-        <ContextState.Provider value={{ dueDate, setDueDate, gender, setGender, spouseLastName, setSpouseLastName, spouseFirstName, setSpouseFirstName,lastName, setLastName,firstName, setFirstName,password, setPassword, email, setEmail, user, setUser, valueOfItemAdded, setValueOfItemAdded, Value, setValue, departmentProducts, setDepartmentProducts, productData, setProductData, babyProductData, setBabyProductData, setRenderProductDetails, renderProductDetails, toggleCategory, setToggleCategory}}>
+        <ContextState.Provider value={{ isAuth, setIsAuth, dueDate, setDueDate, gender, setGender, spouseLastName, setSpouseLastName, spouseFirstName, setSpouseFirstName,lastName, setLastName,firstName, setFirstName,password, setPassword, email, setEmail, user, setUser, valueOfItemAdded, setValueOfItemAdded, Value, setValue, departmentProducts, setDepartmentProducts, productData, setProductData, babyProductData, setBabyProductData, setRenderProductDetails, renderProductDetails, toggleCategory, setToggleCategory}}>
             {props.children}
         </ContextState.Provider>
     )

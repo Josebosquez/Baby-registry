@@ -14,24 +14,20 @@ const Category = () => {
             .then(item => {
                 setDepartmentProducts(item)
             })
-    }, [Value])
+    }, [Value, setDepartmentProducts])
 
     const OnClickFunc = (value) => {
         if (value === "Clothing") {
-            console.log("value that i typed:", value);
             setValue(value)
         }
 
         if (value === "Health and Safety") {
-            console.log("value that i typed:", value);
             setValue(value)
         }
         if (value === "Car seats") {
-            console.log("value that i typed:", value);
             setValue(value)
         }
         if (value === "Diapering") {
-            console.log("value that i typed:", value);
             setValue(value)
         }
 

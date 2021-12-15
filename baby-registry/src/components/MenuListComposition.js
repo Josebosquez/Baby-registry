@@ -10,16 +10,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Link, useNavigate } from 'react-router-dom';
 import CreateContext from "../context/CreateContext"
 import axios from "axios"
-import Cookies from "js-cookie"
-import CheckAuthCookie from '../hooks/checkAuthCookie';
 
 export default function MenuListComposition() {
     const navigate = useNavigate()
-    const { logUserIn, checkIfCookieExists } = CheckAuthCookie();
-
-    const isAuth = checkIfCookieExists();
-
-    const {user, setUser} = useContext(CreateContext)
+    
+    const { user, setUser, isAuth, setIsAuth} = useContext(CreateContext)
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
 
@@ -39,12 +34,18 @@ export default function MenuListComposition() {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
-        let response = await axios.get('http://localhost:3001/users/logOut')
         
-        setUser(null)
-        Cookies.remove('jwt_cookie');
-        navigate('/login')
-        setOpen(false);
+        try {
+            let response = await axios.get('http://localhost:3001/users/logOut')
+            if (response){
+                setUser(null)
+                setIsAuth(null)
+                navigate('/login')
+                setOpen(false);
+            }
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     function handleListKeyDown(event) {

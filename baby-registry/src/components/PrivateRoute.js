@@ -1,16 +1,30 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import CheckAuthCookie from '../hooks/checkAuthCookie'
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import CreateContext from "../context/CreateContext"
 
-function RequireAuth({ children, redirectTo }) {
+function PrivateRoute({ children }) {
+    const { user, isAuth} = useContext(CreateContext)
+    const navigate = useNavigate();
 
-    const { checkIfCookieExists } = CheckAuthCookie()
+    if (isAuth && user) {
+        window.localStorage.setItem('isAuth', JSON.stringify(isAuth))
+        window.localStorage.setItem('user', JSON.stringify(user))
+    }
 
-    let isAuthenticated = checkIfCookieExists();
+    let getAuthFromLocalStorage;
+    let getUserFromLocalStorage;
 
+    if (!isAuth) {
+        getAuthFromLocalStorage = isAuth ? isAuth : JSON.parse(window.localStorage.getItem('isAuth'));
 
-    console.log('requireAuth: ', isAuthenticated)
-    return !isAuthenticated ? <Navigate to={redirectTo}/> : children ;
+        getUserFromLocalStorage = user ? user : JSON.parse(window.localStorage.getItem('user'));
+    }
+
+    if (!getAuthFromLocalStorage && !getUserFromLocalStorage) {
+        navigate('/login')
+    }
+
+    return children;
 }
 
-export default RequireAuth;
+export default PrivateRoute;

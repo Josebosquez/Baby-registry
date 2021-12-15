@@ -70,9 +70,7 @@ export const fetchProducts = () => new Promise((resolve, reject) => {
 });
 
 // create a func that grabs the id of the item that i click on.
-export const renderBabyProductItem = (id) => new Promise((resolve, reject) => {
-    console.log('fetching data for baby product page')
-
+export const fetchIndividualBabyProductItem = (id) => new Promise((resolve, reject) => {
     const itemFound = productList.find(productId => {
         if (id === productId.id) {
             return true;
@@ -93,9 +91,7 @@ export const renderBabyProductItem = (id) => new Promise((resolve, reject) => {
 
 // create a func that grabs the department when i click on categories.
 export const fetchCategoryItems = (value) => new Promise((resolve, reject) => {
-    console.log('fetching data for departments')
     const filterArray = productList.filter(item => item.department === value)
-    console.log(filterArray)
 
     setTimeout(() => {
         try {
@@ -107,23 +103,4 @@ export const fetchCategoryItems = (value) => new Promise((resolve, reject) => {
             reject(error);
         }
     }, 1000);
-});
-
-// update quantity of item in cart
-// create a func that grabs the department when i click on categories.
-export const updateQuantityOfCartItem = (value) => new Promise((resolve, reject) => {
-    console.log('fetching quantityData')
-    const filterArray = productList.filter(item => item.department === value)
-    console.log(filterArray)
-
-//     setTimeout(() => {
-//         try {
-//             if (filterArray) {
-//                 return resolve(filterArray)
-//             }
-//             throw new Error('Something went wrong.')
-//         } catch (error) {
-//             reject(error);
-//         }
-//     }, 1000);
 });
