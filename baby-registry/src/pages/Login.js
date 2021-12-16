@@ -11,8 +11,8 @@ function Login() {
     const { isAuth, setIsAuth, email, setEmail, password, setPassword, user, setUser } = useContext(CreateContext)
 
     useEffect(() => {
-        console.log(user)
-        console.log(isAuth)
+        // console.log(user)
+        // console.log(isAuth)
     }, [isAuth])
 
     const Submit = async (e) => {

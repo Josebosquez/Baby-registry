@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -10,8 +10,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuListComposition from "./MenuListComposition"
+import CreateContext from "../context/CreateContext"
+import { useSelector } from 'react-redux';
+import { useReduxShoppingCart } from '../redux/shoppingCartState';
 
 const Header = () => {
+    const {shoppingCart } = useReduxShoppingCart();
+
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -78,14 +83,15 @@ const Header = () => {
                         />
                     </Search>
 
-                    <IconButton sx={{ fontSize: '10px', display: 'flex', flexDirection: 'column' }}>
+                    <IconButton sx={{ fontSize: '10px', display: 'flex', flexDirection: 'column', color: 'white'}}>
                         <Link to='/cart'>
                             <ShoppingCartIcon sx={{ color: "white" }} />
                         </Link>
-                        cart amount
+                        Cart {shoppingCart.length}
                     </IconButton>
 
-                    <Box sx={{ fontSize: '10px', display: 'flex', flexDirection: 'column', justifyContent:'center', alignContent:'center', alignItems:'center' }}>
+                    <Box sx={{ fontSize: '10px', display: 'flex', 
+                    flexDirection: 'column', justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
                         <MenuListComposition />
                         Menu
                     </Box>

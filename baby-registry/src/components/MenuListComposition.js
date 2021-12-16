@@ -4,7 +4,7 @@ import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
-import {MenuList, MenuItem} from '@mui/material';
+import { MenuList, MenuItem } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,8 +13,8 @@ import axios from "axios"
 
 export default function MenuListComposition() {
     const navigate = useNavigate()
-    
-    const { user, setUser, isAuth, setIsAuth} = useContext(CreateContext)
+
+    const { user, setUser, isAuth, setIsAuth, } = useContext(CreateContext)
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
 
@@ -34,10 +34,10 @@ export default function MenuListComposition() {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
         }
-        
+
         try {
             let response = await axios.get('http://localhost:3001/users/logOut')
-            if (response){
+            if (response) {
                 window.localStorage.removeItem('isAuth')
                 window.localStorage.removeItem('user')
                 setUser(null)
@@ -93,9 +93,9 @@ export default function MenuListComposition() {
                                             <MenuItem onClick={handleClose}>Profile</MenuItem>
                                         </Link>
                                         <MenuItem onClick={handleClose}>My account</MenuItem>
-                                        
-                                        
-                                        {isAuth ? <Link to="login"><MenuItem value='Logout' onClick={handleLogOut}>Logout</MenuItem> </Link>: <Link to="/login"><MenuItem value='Logout' onClick={handleClose} >Login</MenuItem></Link>}
+
+
+                                        {isAuth ? <Link to="login"><MenuItem value='Logout' onClick={handleLogOut}>Logout</MenuItem> </Link> : <Link to="/login"><MenuItem value='Logout' onClick={handleClose} >Login</MenuItem></Link>}
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>

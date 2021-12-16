@@ -4,10 +4,14 @@ import BabyProducts from '../components/BabyProducts';
 import Layout from '../components/Layout'
 import { fetchProducts } from '../fakeDataBase';
 import CreateContext from "../context/CreateContext"
+import { useSelector } from 'react-redux';
 
 const Homepage = () => {
     const { productData, setProductData, renderProductDetails, setRenderProductDetails } = useContext(CreateContext)
 
+    const variable = useSelector(state => state)
+
+    console.log(variable)
     useEffect(() => {
         fetchProducts()
             .then(
@@ -16,7 +20,6 @@ const Homepage = () => {
                     setRenderProductDetails(true)
                 }
             )
-        // logUserIn();
     }, [setRenderProductDetails, productData, setProductData, renderProductDetails]);
 
     return (

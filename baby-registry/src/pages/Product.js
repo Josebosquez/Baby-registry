@@ -5,14 +5,19 @@ import { Box } from '@mui/system';
 import { Button, CardHeader, Container, Typography } from '@mui/material';
 import { useParams } from 'react-router';
 import { fetchIndividualBabyProductItem, } from '../fakeDataBase';
+import { useReduxShoppingCart } from '../redux/shoppingCartState';
+import { useSelector } from 'react-redux';
 
 function Product() {
     let { id } = useParams()
 
     const [babyProductData, setBabyProductData] = useState(undefined);
+    const { addItemToCart, removeFromCart, shoppingCart} = useReduxShoppingCart();
 
-    const { setToggleCategory,  } = useContext(CreateContext)
-    
+    const { setToggleCategory, cartItem} = useContext(CreateContext)
+    // const shoppingCart = useSelector(state => state)
+
+    // console.log(shoppingCart)
     useEffect(() => {
         fetchIndividualBabyProductItem(id)
             .then(
@@ -21,27 +26,19 @@ function Product() {
                     setToggleCategory(false)
                 }
             )
-    }, [id, setToggleCategory]
+    }, [id, setToggleCategory, cartItem]
     )
 
     if (!babyProductData) {
         return null;
     }
 
-    const AddOneToCart = (value) => {
-        console.log(value)
-        console.log(babyProductData.quantity)
-        babyProductData.quantity += 1
-        
-    }
-
-    const MinusOneToCart = (value) => {
-        console.log(value)
-        if (babyProductData.quantity > 0){
-            babyProductData.quantity -= 1
-            
-        }
-    }
+    const quantityOfItem = shoppingCart.find(item => {
+        if(item.id === shoppingCart.id){
+            return true;
+        } return false
+        console.log(item)
+    })
     
     return (
         <Layout>
@@ -54,7 +51,7 @@ function Product() {
                         action={
                             <Box>
                                 <Typography color="black" >
-                                    {babyProductData.price}
+                                    $ {babyProductData.price}
                                 </Typography>
                             </Box>
                         }
@@ -65,17 +62,19 @@ function Product() {
 
                     <Box sx={{ display: 'flex', width: '100%', justifyContent: 'space-evenly' }}>
                         <Button sx={{ fontSize: '25px' }}
-                            value={babyProductData.quantity}
-                            onClick={(e) => AddOneToCart(e.target.value)}
-                            >
+                            value={babyProductData.id}
+                            onClick={
+                                () => addItemToCart({ id: babyProductData.id, name: babyProductData.name, price: babyProductData.price, image: babyProductData.image })
+                            }
+                        >
                             +
                         </Button>
-                        <p style={{ fontSize: '25px' }}>
-                            Quantity: {babyProductData.quantity}
+                        <p style={{ fontSize: '25px' }} value={babyProductData.id}>
+                            Quantity: {shoppingCart.quantity}
                         </p>
                         <Button sx={{ fontSize: '25px' }}
                                 value={babyProductData.quantity}
-                            onClick={(e) => MinusOneToCart(e.target.value)}
+                            onClick={(e) => removeFromCart(babyProductData.id)}
                             >
                             -
                         </Button>

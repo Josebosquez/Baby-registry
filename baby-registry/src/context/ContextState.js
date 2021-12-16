@@ -27,10 +27,11 @@ const AppState = (props)=> {
     const [gender, setGender] = useState('')
     const [dueDate, setDueDate] = useState('')
 
-    
+    // cartState
+    const [cartItem, setCartItem] = useState([])
 
     return (
-        <ContextState.Provider value={{ isAuth, setIsAuth, dueDate, setDueDate, gender, setGender, spouseLastName, setSpouseLastName, spouseFirstName, setSpouseFirstName,lastName, setLastName,firstName, setFirstName,password, setPassword, email, setEmail, user, setUser, valueOfItemAdded, setValueOfItemAdded, Value, setValue, departmentProducts, setDepartmentProducts, productData, setProductData, babyProductData, setBabyProductData, setRenderProductDetails, renderProductDetails, toggleCategory, setToggleCategory}}>
+        <ContextState.Provider value={{ cartItem, setCartItem, isAuth, setIsAuth, dueDate, setDueDate, gender, setGender, spouseLastName, setSpouseLastName, spouseFirstName, setSpouseFirstName, lastName, setLastName, firstName, setFirstName, password, setPassword, email, setEmail, user, setUser, valueOfItemAdded, setValueOfItemAdded, Value, setValue, departmentProducts, setDepartmentProducts, productData, setProductData, babyProductData, setBabyProductData, setRenderProductDetails, renderProductDetails, toggleCategory, setToggleCategory}}>
             {props.children}
         </ContextState.Provider>
     )
