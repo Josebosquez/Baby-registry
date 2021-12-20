@@ -14,7 +14,7 @@ import axios from "axios"
 export default function MenuListComposition() {
     const navigate = useNavigate()
 
-    const { user, setUser, isAuth, setIsAuth, } = useContext(CreateContext)
+    const { setUser, isAuth, setIsAuth, } = useContext(CreateContext)
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
 
@@ -36,7 +36,7 @@ export default function MenuListComposition() {
         }
 
         try {
-            let response = await axios.get('http://localhost:3001/users/logOut')
+            let response = await axios.get('http://localhost:3001/api/users/logOut')
             if (response) {
                 window.localStorage.removeItem('isAuth')
                 window.localStorage.removeItem('user')

@@ -1,8 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 
-// const saveShoppingCartInLocalStorage = (shoppingCart) =>
-//     window.localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart))
-
 const sortCartItems = (shoppingCartArray) => {
     const sorted = shoppingCartArray.sort(function (x, y) {
         console.log({ x, y });
@@ -12,9 +9,6 @@ const sortCartItems = (shoppingCartArray) => {
 
         return y.timestamp - x.timestamp;
     })
-
-    console.log({ shoppingCartArray, sorted })
-
     return sorted;
 }
 
@@ -37,7 +31,6 @@ export const addToCartActionCreator = ({
     price,
     image,
 }) => {
-    console.log('product: ', name, id, price, image)
     return {
         type: ADD_TO_CART_ACTION,
         payload: {
@@ -58,10 +51,7 @@ const removeToCartActionCreator = (itemId) => {
     })
 }
 
-// const cartInLocalStorage = window.localStorage.getItem('shoppingCart');
-
 const initialState = []
-// ? JSON.parse(cartInLocalStorage) : []
 
 export const shoppingCartReducer = (oldState = initialState, action) => {
     if (action.type === EMPTY_CART_ACTION) {
@@ -69,7 +59,6 @@ export const shoppingCartReducer = (oldState = initialState, action) => {
     }
 
     if (action.type === ADD_TO_CART_ACTION) {
-        console.log("yea")
         const { payload: { id, name, price, image } } = action;
 
         const itemFound = oldState.find(item => item.id === action.payload.id);
@@ -129,7 +118,6 @@ export const useReduxShoppingCart = () => {
         price,
         image,
     }) => {
-        console.log(addItemToCart)
         dispatch(
             addToCartActionCreator({
                 id,
@@ -151,9 +139,7 @@ export const useReduxShoppingCart = () => {
     }
 
     const shoppingCart = useSelector(state => state);
-    console.log("shoppingcartConsole.log", shoppingCart)
 
-    // saveShoppingCartInLocalStorage(shoppingCart)
     return {
         addItemToCart,
         removeFromCart,

@@ -1,21 +1,18 @@
-import React, {useContext, useSelector} from 'react'
 import Layout from '../components/Layout'
 import { Button, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { useReduxShoppingCart } from '../redux/shoppingCartState';
 import CartItem from '../components/CartItem';
-import ReplayIcon from '@mui/icons-material/Replay';
 import { Link } from 'react-router-dom';
 
 function Cartpage() {
     const { total, emptyCart, shoppingCart } = useReduxShoppingCart();
-    console.log(shoppingCart)
 
     if (shoppingCart.length < 1) {
         return (
             <Layout>
-                <Box sx={{fontSize: '50px', textAlign:'center', marginTop: '10'}}>
-                Please add items to the cart in order to checkout.
+                <Box sx={{ fontSize: '50px', textAlign: 'center', marginTop: '10' }}>
+                    Please add items to the cart in order to checkout.
                 </Box>
             </Layout>
         )
@@ -31,22 +28,27 @@ function Cartpage() {
                 )}
             </Box>
             <Box display="flex" flexDirection="column" alignItems="center" mt={6}>
-                <Box mb={2}>
-                    <Typography fontWeight="bold">
+                <Box mb={2} >
+                    <Typography>
                         Total: $ {total}
                     </Typography>
                 </Box>
-                <Box mb={2}>
-                    <Button
-                        variant="contained"
-                        onClick={emptyCart}
-                        startIcon={<ReplayIcon />}
-                    >Empty Cart</Button>
+                <Box display="flex" flexDirection="row" alignItems="center" mt={2} >
+                    <Box mb={2} mr={2} >
+                        <Button sx={{ color: 'black' }} onClick={emptyCart} >Remove all items Cart</Button>
+                    </Box>
+                    <Box mb={2} >
+                        <Link to="/">
+                            <Button sx={{ textDecoration: 'none', color: "black", }}> Continue shopping</Button>
+                        </Link>
+                    </Box>
                 </Box>
-                <Box mb={2}>
-                    <Link to="/">
-                        <Button variant="contained">Back to home</Button>
-                    </Link>
+                <Box>
+                    <Button sx={{ color: "black" }}>
+                        <Link to="/purchased">
+                            Purchase
+                        </Link>
+                    </Button>
                 </Box>
             </Box>
         </Layout>

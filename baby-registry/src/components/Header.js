@@ -1,4 +1,3 @@
-import React, { useContext } from 'react'
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -10,8 +9,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MenuListComposition from "./MenuListComposition"
-import CreateContext from "../context/CreateContext"
-import { useSelector } from 'react-redux';
 import { useReduxShoppingCart } from '../redux/shoppingCartState';
 
 const Header = () => {

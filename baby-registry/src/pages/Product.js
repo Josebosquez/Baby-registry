@@ -6,7 +6,6 @@ import { Button, CardHeader, Container, Typography } from '@mui/material';
 import { useParams } from 'react-router';
 import { fetchIndividualBabyProductItem, } from '../fakeDataBase';
 import { useReduxShoppingCart } from '../redux/shoppingCartState';
-import { useSelector } from 'react-redux';
 
 function Product() {
     let { id } = useParams()
@@ -15,9 +14,6 @@ function Product() {
     const { addItemToCart, removeFromCart, shoppingCart} = useReduxShoppingCart();
 
     const { setToggleCategory, cartItem} = useContext(CreateContext)
-    // const shoppingCart = useSelector(state => state)
-
-    // console.log(shoppingCart)
     useEffect(() => {
         fetchIndividualBabyProductItem(id)
             .then(
@@ -33,13 +29,6 @@ function Product() {
         return null;
     }
 
-    const quantityOfItem = shoppingCart.find(item => {
-        if(item.id === shoppingCart.id){
-            return true;
-        } return false
-        console.log(item)
-    })
-    
     return (
         <Layout>
             <Box>
@@ -69,9 +58,9 @@ function Product() {
                         >
                             +
                         </Button>
-                        <p style={{ fontSize: '25px' }} value={babyProductData.id}>
+                        {/* <p style={{ fontSize: '25px' }} value={babyProductData.id}>
                             Quantity: {shoppingCart.quantity}
-                        </p>
+                        </p> */}
                         <Button sx={{ fontSize: '25px' }}
                                 value={babyProductData.quantity}
                             onClick={(e) => removeFromCart(babyProductData.id)}

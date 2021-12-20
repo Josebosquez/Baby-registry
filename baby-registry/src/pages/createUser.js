@@ -18,7 +18,7 @@ function CreateUser() {
     const CreateUser = async (e) => {
         e.preventDefault()
         try {
-            let response = await axios.post('http://localhost:3001/users/createUser', {
+            let response = await axios.post('http://localhost:3001/api/users/createUser', {
                 email: email,
                 password: password,
                 dueDate: dueDate,

@@ -21,24 +21,21 @@ const CartItem = (props) => {
         </Box>
         <Box px={2} display="flex" flexDirection="column" justifyContent="center" flexGrow={1}>
           <Box>
-            <Typography fontWeight="bold">
-              {item.name}
+            <Typography>
+              {item.name} -  $ {item.price}
             </Typography>
           </Box>
           <Box>
-          <Typography fontWeight="bold" color="primary">
-            $ {item.price}
-            </Typography>
           </Box>
         </Box>
         <Box px={2} display="flex" flexDirection="column" justifyContent="center">
-          <Typography fontWeight="bold" color="primary">
-            x {item.quantity}
+          <Typography>
+            x{item.quantity}
           </Typography>
         </Box>
         <Box display="flex" flexDirection="column" justifyContent="center">
-          <IconButton aria-label="delete" onClick={() => removeFromCart(item.id)}>
-            <DeleteForeverIcon />
+          <IconButton aria-label="delete" sx={{fontSize: '15px'}}onClick={() => removeFromCart(item.id)}>
+            Remove
           </IconButton>
         </Box>
       </Box>

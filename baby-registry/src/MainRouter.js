@@ -9,6 +9,7 @@ import Sources from './components/Sources'
 import Login from './pages/Login'
 import ErrorPage from './pages/ErrorPage'
 import PrivateRoute from "./components/PrivateRoute"
+import Purchased from './pages/purchased'
 
 function MainRouter() {
     return (
@@ -29,6 +30,14 @@ function MainRouter() {
                 element={
                     <PrivateRoute redirectTo='/login'>
                         <Product />
+                    </PrivateRoute>
+                }
+            />
+            <Route
+                path='/purchased'
+                element={
+                    <PrivateRoute redirectTo='/login'>
+                        <Purchased />
                     </PrivateRoute>
                 }
             />

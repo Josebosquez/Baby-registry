@@ -8,17 +8,16 @@ import { useNavigate, Link } from "react-router-dom"
 
 function Login() {
     let navigate = useNavigate();
-    const { isAuth, setIsAuth, email, setEmail, password, setPassword, user, setUser } = useContext(CreateContext)
+    const { isAuth, setIsAuth, email, setEmail, password, setPassword, setUser } = useContext(CreateContext)
 
     useEffect(() => {
-        // console.log(user)
-        // console.log(isAuth)
+
     }, [isAuth])
 
     const Submit = async (e) => {
         e.preventDefault()
         try {
-            let response = await axios.post('http://localhost:3001/users/login', {
+            let response = await axios.post('http://localhost:3001/api/users/login', {
                 email: email,
                 password: password
             })
